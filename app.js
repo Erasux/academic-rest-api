@@ -32,7 +32,7 @@ app.use(tkFn)
 const studentRoutes = require("./routes/student.routes")
 studentRoutes(app);
 
-//Teahcer routes
+//Teacher routes
 const teacherRoutes = require("./routes/teacher.routes")
 teacherRoutes(app);
 //Period routes
@@ -41,6 +41,12 @@ periodRoutes(app);
 //Course routes
 const courseRoutes = require("./routes/course.routes")
 courseRoutes(app);
+//Faculty routes
+const facultyRoutes = require("./routes/faculty.routes")
+facultyRoutes(app);
+//Program routes
+const programRoutes = require("./routes/program.routes")
+programRoutes(app);
 
 
 app.listen(port, () => {

@@ -10,7 +10,7 @@ module.exports = (app) => {
     })
 
     app.get("/course/bycode/:code", (req, res, next) => {
-        controller.getBydocument(req, res, next)
+        controller.getByCode(req, res, next)
     })
     app.put("/course", (req, res, next) => {
         controller.updateCourse(req, res, next)
