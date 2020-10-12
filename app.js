@@ -1,7 +1,7 @@
 /**Packs */
-const express= require("express")
+const express = require("express")
 const config = require("config")
-const bodyParser= require("body-parser")
+const bodyParser = require("body-parser")
 
 
 /**app configuration */
@@ -16,9 +16,16 @@ const urlEncodedParser = bodyParser.urlencoded({
 app.use(jsonParser)
 app.use(urlEncodedParser)
 
-app.get("/",(req, res, next)=>{
+app.get("/", (req, res, next) => {
     res.send("Welcome to academic rest api")
 })
+
+//User routes
+const userRoutes = require("./routes/user.routes")
+userRoutes(app);
+
+
+
 //**Student routes */
 const studentRoutes = require("./routes/student.routes")
 studentRoutes(app);
@@ -32,10 +39,8 @@ periodRoutes(app);
 //Course routes
 const courseRoutes = require("./routes/course.routes")
 courseRoutes(app);
-//User routes
-const userRoutes = require("./routes/user.routes")
-userRoutes(app);
 
-app.listen(port, ()=>{
+
+app.listen(port, () => {
     console.log("Server is running...")
 })
