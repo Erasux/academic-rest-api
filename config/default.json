@@ -8,7 +8,8 @@
         }
     },
     "secretkeys":{
-        "cryptojs": "52819026"
+        "cryptojs": "52819026",
+        "jwt": "123456789"
     },
     "roles":{
         "student": 1,

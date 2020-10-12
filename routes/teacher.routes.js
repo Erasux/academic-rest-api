@@ -13,14 +13,14 @@ module.exports = (app) => {
         controller.getBydocument(req, res, next)
     })
     app.put("/teacher", (req, res, next) => {
-        controller.updateteacher(req, res, next)
+        controller.updateTeacher(req, res, next)
 
     })
 
     app.post("/teacher", (req, res, next) => {
-        controller.createteacher(req, res, next)
+        controller.createTeacher(req, res, next)
     })
     app.delete("/teacher", (req, res, next) => {
-        controller.deleteteacher(req, res, next)
+        controller.deleteTeacher(req, res, next)
     })
 }

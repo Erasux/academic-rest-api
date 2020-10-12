@@ -30,7 +30,7 @@ exports.createStudent = (req, res, next) => {
             name: std.name,
             lastName: std.lastName,
             username: std.code,
-            password: helper.EncryptPassword(req.body.password),
+            password: req.body.password,
             rol: r
         }
         userDto.create(user, (err, u) => {

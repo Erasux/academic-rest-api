@@ -26,6 +26,15 @@ studentRoutes(app);
 //Teahcer routes
 const teacherRoutes = require("./routes/teacher.routes")
 teacherRoutes(app);
+//Period routes
+const periodRoutes = require("./routes/period.routes")
+periodRoutes(app);
+//Course routes
+const courseRoutes = require("./routes/course.routes")
+courseRoutes(app);
+//User routes
+const userRoutes = require("./routes/user.routes")
+userRoutes(app);
 
 app.listen(port, ()=>{
     console.log("Server is running...")

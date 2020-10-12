@@ -31,22 +31,9 @@ exports.createTeacher = (req, res, next) => {
             name: teacher.name,
             lastName: teacher.lastName,
             username: teacher.document,
-            password: helper.EncryptPassword(req.body.password),
+            password: req.body.password,
             rol: r
         }
-        userDto.create(user, (err, u) => {
-            if (err) {
-                return res.status(400).json(
-                    {
-                        error: err
-                    }
-                )
-            }
-            notHelper.sendSMS(teacher.phone)
-            res.status(201).json({
-                info: data
-            })
-        })
     })
 }
 exports.updateTeacher = (req, res, next) => {
@@ -66,9 +53,35 @@ exports.updateTeacher = (req, res, next) => {
                 }
             )
         }
-        res.status(201).json({
-            info: data
-        })
+        if (req.body.olddocument != undefined) {
+            let r = config.get("roles").teacher
+            console.log(req.body.olddocument)
+
+            let user = {
+                name: teacher.name,
+                lastName: teacher.lastName,
+                username: teacher.document,
+                password: req.body.password,
+                rol: r
+            }
+            userDto.update({ username: req.body.olddocument }, user, (err, u) => {
+                if (err) {
+                    return res.status(400).json(
+                        {
+                            error: err
+                        }
+                    )
+                }
+                notHelper.sendSMS(teacher.phone)
+                return res.status(201).json({
+                    info: data
+                })
+            })
+        } else {
+            res.status(201).json({
+                info: data
+            })
+        }
     })
 
 }
@@ -88,9 +101,9 @@ exports.getAll = (req, res, next) => {
     })
 
 }
-exports.getByCode = (req, res, next) => {
+exports.getByDocument = (req, res, next) => {
 
-    teacherDto.getByCode({ code: req.params.code }, (err, data) => {
+    teacherDto.getByDocument({ code: req.params.code }, (err, data) => {
         if (err) {
             return res.status(400).json(
                 {
